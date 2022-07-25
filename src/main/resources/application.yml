@@ -1,0 +1,15 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database: oracle
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost/xe
+    username: doc_table
+    password: doc_table
+logging:
+  level:
+    org.hibernate.SQL: debug
+#    org.hibernate.type: trace
