@@ -44,15 +44,12 @@ public class DocController {
         Sheet sheet =workbook.getSheetAt(2);
         Sheet sheet2 =workbook.cloneSheet(2);
 
-
         for(int i = 17 ; i<30;i++){
             Row row =sheet2.createRow(i);
 
             row.createCell(0).setCellValue(i);
 
         }
-
-
         res.setContentType("application/vnd.ms-excel");
         res.setHeader("Content-Disposition", "attachment;filename=" + fileName+".xlsx");
         try {
@@ -63,6 +60,5 @@ public class DocController {
             fis.close();
             workbook.close();
         }
-//        return null;
     }
 }

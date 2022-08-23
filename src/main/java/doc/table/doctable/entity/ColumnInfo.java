@@ -21,7 +21,6 @@ public class ColumnInfo implements  Serializable{
 
     private String physicalName;
 
-//    @Column(updatable = false,insertable = false,nullable = true)
     private String logicalName;
 
     private String dataType;
@@ -45,10 +44,6 @@ public class ColumnInfo implements  Serializable{
     private TableInfo tableInfo;
 
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-//    @JoinTable(name="standardDict"
-//            joinColumns = @JoinColumn(name="originLogicalName",
-//            referencedColumnName = "logicalName")
-//    )z
     @JoinColumn(name="logicalName",referencedColumnName = "originLogicalName",foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT),updatable = false,insertable = false)
     private StandardDict standardDict;
 

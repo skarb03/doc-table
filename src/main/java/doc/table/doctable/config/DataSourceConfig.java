@@ -33,8 +33,23 @@ public class DataSourceConfig {
         return dataSourceProperties().initializeDataSourceBuilder().type(HikariDataSource.class).build();
     }
 
-//    @Bean
-//    public JdbcTemplate jdbcTemplate(DataSource dataSource){
-//        return new JdbcTemplate(dataSource());
-//    }
+    @Bean(name = "tDataSourceProperties")
+    @ConfigurationProperties(prefix = "table-create")
+    public DataSourceProperties tDataSourceProperties(){
+        return new DataSourceProperties();
+    }
+
+    @Bean(name="tDataSource")
+    public DataSource tDataSource(){
+
+        log.info("DriverClassName   : {}",tDataSourceProperties().getDriverClassName());
+        log.info("url               : {}",tDataSourceProperties().getUrl());
+        log.info("username          : {}",tDataSourceProperties().getUsername());
+        return tDataSourceProperties().initializeDataSourceBuilder().type(HikariDataSource.class).build();
+    }
+
+    @Bean
+    public JdbcTemplate jdbcTemplate(){
+        return new JdbcTemplate(tDataSource());
+    }
 }
