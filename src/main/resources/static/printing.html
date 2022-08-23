@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>데이터뽑기</title>
+</head>
+<body>
+<h2>문서다운받기</h2>
+<ul>
+    <li>
+        <label>인터페이스정의서</label>
+        <form action="/doc/interface" method="get">
+            <label>
+                <input type="text" name="fileName" placeholder="인터페이스명"/>
+            </label>
+            <input type="submit" value="download"/>
+        </form>
+    </li>
+    <li>
+        <label>tobe테이블정의서</label>
+        <form action="/doc/tobeTable" method="get">
+            <label>
+                <input type="text" name="fileName" placeholder="tobe테이블정의서명"/>
+            </label>
+            <input type="submit" value="download"/>
+        </form>
+    </li>
+    <li>
+        <label>테이블컬럼매핑정의서</label>
+        <form action="/doc/tobeTableMapping" method="get">
+            <label>
+                <input type="text" name="fileName" placeholder="테이블컬럼매핑정의서명"/>
+            </label>
+            <input type="submit" value="download"/>
+        </form>
+    </li>
+</ul>
+<h2>테이블생성하기</h2>
+<ul>
+    <li>
+        <label>스샷용테이블</label>
+        <form action="/table/snapshotTable" method="get">
+            <label>
+                <input type="text" name="ownerPlace" placeholder="owner위치"/>
+            </label>
+            <input type="submit" value="create"/>
+        </form>
+    </li>
+    <li>
+        <label>인터페이스테이블생성</label>
+        <form action="/table/interfaceTable" method="get">
+            <input type="submit" value="create"/>
+        </form>
+    </li>
+</ul>
+<!--<h3>엑셀 업로드 정보</h3>-->
+
+<!--<table>-->
+<!--    <tr>-->
+<!--        <th>ipAddress</th>-->
+<!--        <th>excelType</th>-->
+<!--        <th>timestamp</th>-->
+<!--    </tr>-->
+<!--    <tbody>-->
+
+<!--    </tbody>-->
+<!--</table>-->
+<a href="/index">이전으로</a>
+
+
+</body>
+<script>
+    const table = document.getElementById('tbody');
+    const list = '${dataList}';
+
+</script>
+</html>

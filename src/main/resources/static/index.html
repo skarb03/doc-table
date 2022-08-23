@@ -2,13 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>데이터넣기</title>
 </head>
 <body>
-<h1>파일업로드</h1>
-<form action="/uploadFile" method="post" enctype="multipart/form-data">
-<input type="file" name ="excelFile"/>
-<input type="submit"/>
-</form>
+<ul>
+    <li>
+        <label>원천데이터파일 업로드</label>
+        <form action="/uploadFile" method="post" enctype="multipart/form-data">
+            <input type="file" name ="excelFile"/>
+            <input type="submit"/>
+        </form>
+    </li>
+    <li>
+        <label>표준데이터사전 업로드</label>
+        <form action="/standardData" method="post" enctype="multipart/form-data">
+            <input type="file" name ="standardDataFile"/>
+            <input type="submit"/>
+        </form>
+    </li>
+    <li>
+        <label>투비테이블목록 업로드</label>
+        <form action="/tobeList" method="post" enctype="multipart/form-data">
+            <input type="file" name ="tobeListFile"/>
+            <input type="submit"/>
+        </form>
+    </li>
+</ul>
+<a href="/movePrinting">프린트화면으로 이동</a>
 </body>
 </html>
