@@ -47,6 +47,9 @@ public class TableInfoExcelService implements ExcelServiceInterface<TableInfo> {
                             .tableId(tablePk)
                             .physicalName(getRowValue(row, TableColumnType.PHY_TAB_NAME.getValue()))
                             .logicalName(getRowValue(row, TableColumnType.LOGICAL_TAB_NAME.getValue()))
+                            .intfPhsicslName(getRowValue(row,TableColumnType.INTF_NUMBER.getValue()))
+                            .tobePhysicalName(getRowValue(row,TableColumnType.TOBE_TABLE_NAME.getValue()))
+                            .createYn(getRowValue(row,TableColumnType.CREATE_YN.getValue()))
                             .columnInfoList(new LinkedList<>())
                             .build();
                     tableInfoList.add(tableInfo);
@@ -64,6 +67,7 @@ public class TableInfoExcelService implements ExcelServiceInterface<TableInfo> {
                                 .precision(getRowValue(row,TableColumnType.PRECISION.getValue()))
                                 .scale(getRowValue(row,TableColumnType.SCALE.getValue()))
                                 .pk(getRowValue(row,TableColumnType.PK_YN.getValue()))
+                                .connYn(getRowValue(row,TableColumnType.CONN_YN.getValue()))
                                 .nullable(getRowValue(row,TableColumnType.NULLABLE.getValue()))
                                 .defaultValue(getRowValue(row,TableColumnType.DEFAULT.getValue()))
                                 .displayOrder(getRowValue(row,TableColumnType.ORDER.getValue()))

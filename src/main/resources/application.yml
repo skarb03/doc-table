@@ -14,8 +14,8 @@ spring:
     password: doc_table
   servlet:
     multipart:
-      max-file-size: 3MB
-#logging:
+      max-file-size: 20MB
+#logging:ㄱㄱ
 #  level:
 #    org.hibernate.SQL: debug
 
@@ -24,5 +24,9 @@ spring:
 table-create:
   driver-class-name: oracle.jdbc.driver.OracleDriver
   url: jdbc:oracle:thin:@localhost/xe
-  username: doc_table
-  password: doc_table
+  username: erdbd00
+  password: erdbd00
+#  driver-class-name: com.tmax.tibero.jdbc.TbDriver
+#  url: jdbc:tibero:thin:@localhost:8629:tibero
+#  username: gmdmi
+#  password: gmdmi

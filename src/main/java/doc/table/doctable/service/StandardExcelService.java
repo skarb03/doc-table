@@ -39,17 +39,18 @@ public class StandardExcelService implements ExcelServiceInterface<StandardDict>
             for (int i = 1; i < worksheet.getPhysicalNumberOfRows(); i++) { // 4
                 Row prevRow = worksheet.getRow(i - 1);
                 Row row = worksheet.getRow(i);
-
-                standardDictList.add(
-                        StandardDict.builder()
-                                .standardLogicsLang(getValue(row,StandardColumnType.STANDARD_LOGICS_LANG.getValue()))
-                                .standardPhysicsLang(getValue(row,StandardColumnType.STANDARD_PHYSICS_LANG.getValue()))
-                                .standardDomainName(getValue(row,StandardColumnType.STANDARD_DOMAIN_NAME.getValue()))
-                                .dataType(getValue(row,StandardColumnType.DATA_TYPE.getValue()))
-                                .length(getValue(row,StandardColumnType.LENGTH.getValue()))
-                                .originLogicalName(getValue(row,StandardColumnType.ORIGIN_LOGICAL_NAME.getValue()))
-                                .build()
-                );
+//                if("국토교통부".equals(row.getCell(8).toString())) {
+                    standardDictList.add(
+                            StandardDict.builder()
+                                    .standardLogicsLang(getValue(row, StandardColumnType.STANDARD_LOGICS_LANG.getValue()))
+                                    .standardPhysicsLang(getValue(row, StandardColumnType.STANDARD_PHYSICS_LANG.getValue()))
+                                    .standardDomainName(getValue(row, StandardColumnType.STANDARD_DOMAIN_NAME.getValue()))
+                                    .dataType(getValue(row, StandardColumnType.DATA_TYPE.getValue()))
+                                    .length(getValue(row, StandardColumnType.LENGTH.getValue()))
+                                    .originLogicalName(getValue(row, StandardColumnType.ORIGIN_LOGICAL_NAME.getValue()))
+                                    .build()
+                    );
+//                }
             }
 
         } catch (IOException e) {

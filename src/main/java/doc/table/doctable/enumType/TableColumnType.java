@@ -12,7 +12,11 @@ public enum TableColumnType {
     NULLABLE(8),
     DEFAULT(9),
     ORDER(10),
-    PRECISION(11),
+    CONN_YN(11),
+    TOBE_TABLE_NAME(12),
+    INTF_NUMBER(13),
+    CREATE_YN(14),
+    PRECISION(300),//쓰레기값
     READ_SHEET_LOCATION(0)
     ;
 

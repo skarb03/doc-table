@@ -23,6 +23,10 @@ public class TableInfo {
 
     private String tobePhysicalName;
 
+    private String intfPhsicslName;
+
+    private String createYn;
+
     @OneToMany(cascade=CascadeType.ALL,fetch = FetchType.LAZY , mappedBy = "tableId")
     private List<ColumnInfo> columnInfoList;
 

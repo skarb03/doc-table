@@ -15,11 +15,10 @@ import java.sql.SQLException;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j
-public class CreateTableService {
+public class IntfTableService {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
@@ -60,11 +59,9 @@ public class CreateTableService {
         for(TableInfo tableInfo : tableInfoList){
             sb= new StringBuilder();
             sb.append("create table ").append(ownerPlace).append(".").append(tableInfo.getTobePhysicalName()).append("(");
-//            List<ColumnInfo> columnInfoList = tableInfo.getColumnInfoList();
-            List<ColumnInfo> columnInfoList = tableInfo.getColumnInfoList().stream().filter(c -> "O".equals(c.getConnYn())).collect(Collectors.toList());
+            List<ColumnInfo> columnInfoList = tableInfo.getColumnInfoList();
             columnInfoList.sort(Comparator.comparing(ColumnInfo::convertOrder));
-
-            for(ColumnInfo columnInfo : columnInfoList){
+            for(ColumnInfo columnInfo : tableInfo.getColumnInfoList()){
 
                 StandardDict standardDict = columnInfo.getStandardDict();
 
@@ -160,11 +157,9 @@ public class CreateTableService {
                     .append(tableInfo.getLogicalName())
                     .append("'");
             commentQuery.add(tableComment.toString());
-            List<ColumnInfo> columnInfoList = tableInfo.getColumnInfoList().stream().filter(c -> "O".equals(c.getConnYn())).collect(Collectors.toList());
-//            List<ColumnInfo> columnInfoList = tableInfo.getColumnInfoList();
-            for(ColumnInfo columnInfo : columnInfoList){
-                StandardDict standardDict = columnInfo.getStandardDict();
 
+            for(ColumnInfo columnInfo : tableInfo.getColumnInfoList()){
+                StandardDict standardDict = columnInfo.getStandardDict();
                 columnComment = new StringBuilder();
                 columnComment.append("comment on column ")
                         .append(ownerPlace)
@@ -185,7 +180,6 @@ public class CreateTableService {
     public List<String> pkQuery(List<TableInfo> tableInfoList,String ownerPlace){
         List<String> pkQueryList = new LinkedList<>();
         StringBuilder pkQuery = null;
-        boolean hasPks = false;
         for(TableInfo tableInfo : tableInfoList){
             pkQuery = new StringBuilder();
             pkQuery.append("alter table ")
@@ -193,22 +187,16 @@ public class CreateTableService {
                     .append(".")
                     .append(tableInfo.getTobePhysicalName())
                     .append(" add primary key (");
-            List<ColumnInfo> columnInfoList = tableInfo.getColumnInfoList().stream().filter(c -> "O".equals(c.getConnYn())).collect(Collectors.toList());
-//            List<ColumnInfo> columnInfoList = tableInfo.getColumnInfoList();
-            for(ColumnInfo columnInfo : columnInfoList){
+            for(ColumnInfo columnInfo : tableInfo.getColumnInfoList()){
                 StandardDict standardDict = columnInfo.getStandardDict();
                 if("Y".equals(columnInfo.getPk())){
                     pkQuery.append(standardDict.getStandardPhysicsLang())
                             .append(",");
-                    hasPks = true;
                 }
             }
             pkQuery.deleteCharAt(pkQuery.length()-1)
                     .append(") ");
-
-            if(!tableInfo.getTobePhysicalName().equals("BD00G_907"))
-                pkQueryList.add(pkQuery.toString());
-//            hasPks = false;
+            pkQueryList.add(pkQuery.toString());
         }
 
         return pkQueryList;

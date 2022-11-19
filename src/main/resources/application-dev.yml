@@ -24,7 +24,7 @@ spring:
 #    password: gmdmi
   servlet:
     multipart:
-      max-file-size: 3MB
+      max-file-size: 4MB
 #logging:\
 #  level:
 #    org.hibernate.SQL: debug
@@ -37,7 +37,7 @@ table-create:
 #  username: erdbd00
 #  password: erdbd00
   driver-class-name: com.tmax.tibero.jdbc.TbDriver
-##  url: jdbc:tibero:thin:@10.47.39.125:8629:DB_D_GMD
-  url: jdbc:tibero:thin:@localhost:8629:tibero
-  username: gmdmi
-  password: gmdmi
+  url: jdbc:tibero:thin:@10.47.39.125:8629:DB_D_GMD
+#  url: jdbc:tibero:thin:@localhost:8629:tibero
+  username: erdbd00
+  password: erdbd00

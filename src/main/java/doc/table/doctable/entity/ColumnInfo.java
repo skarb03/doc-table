@@ -20,7 +20,6 @@ public class ColumnInfo implements  Serializable{
     private Long tableId;
 
     private String physicalName;
-
     private String logicalName;
 
     private String dataType;
@@ -37,14 +36,23 @@ public class ColumnInfo implements  Serializable{
 
     private String defaultValue;
 
+    private String connYn;
+
     private String displayOrder;
 
     @ManyToOne
     @JoinColumn(name = "tableId",updatable = false,insertable = false)
     private TableInfo tableInfo;
 
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name="logicalName",referencedColumnName = "originLogicalName",foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT),updatable = false,insertable = false)
     private StandardDict standardDict;
 
+    public int convertOrder(){
+        if(displayOrder.contains(".")){
+            return Integer.parseInt(displayOrder.split("\\.")[0]);
+        }
+
+        return Integer.parseInt(displayOrder);
+    }
 }
